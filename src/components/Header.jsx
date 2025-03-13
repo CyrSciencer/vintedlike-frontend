@@ -40,7 +40,9 @@ const Header = ({ search, setSearch, priceHandle, setPriceHandle }) => {
       </div>
       <div>
         <div>
-          <button>S'inscrire</button>
+          <button>
+            <Link to="/signup">S'inscrire</Link>
+          </button>
           <button>Se connecter</button>
         </div>
         <button>Vends tes articles</button>

@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import axios from "axios";
 import Product from "./pages/Product";
+import SignUp from "./pages/SignUp";
 const App = () => {
   const [search, setSearch] = useState("");
   const [priceHandle, setPriceHandle] = useState({});
@@ -30,6 +31,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </Router>
     </>

@@ -8,7 +8,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      console.log("here");
+      // console.log("here");
 
       try {
         const response = await axios.get(
