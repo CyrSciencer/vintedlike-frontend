@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 const Offers = ({ offerInfo, placeholder }) => {
   //   console.log(offerInfo._id);
   const id = offerInfo._id;
-  const owner = offerInfo.owner.account.username;
+  let owner = "none";
+  offerInfo.owner && (owner = offerInfo.owner.account.username);
   let avatar = placeholder;
-  if (offerInfo.owner.account.avatar) {
-    avatar = offerInfo.owner.account.avatar.secure_url;
-  }
+  // if (offerInfo.owner.account.avatar) {
+  //   avatar = offerInfo.owner.account.avatar.secure_url;
+  // }
   //   console.log(offerInfo);
-  const imageOffer = offerInfo.product_pictures[0].secure_url;
+  const imageOffer = offerInfo.product_image;
   const price = offerInfo.product_price;
   const productDetail = offerInfo.product_details;
   let detailSearch = {};

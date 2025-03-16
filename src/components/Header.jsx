@@ -1,8 +1,17 @@
 import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
-const Header = ({ search, setSearch, priceHandle, setPriceHandle }) => {
+import Login from "../pages/Login";
+import Cookies from "js-cookie";
+const Header = ({
+  search,
+  setSearch,
+  priceHandle,
+  setPriceHandle,
+  token,
+  setToken,
+}) => {
   const sort = priceHandle.HighPriceFirst;
-  //   console.log(priceHandle);
+
   return (
     <>
       <div>
@@ -41,9 +50,22 @@ const Header = ({ search, setSearch, priceHandle, setPriceHandle }) => {
       <div>
         <div>
           <button>
-            <Link to="/signup">S'inscrire</Link>
+            {token !== null ? (
+              <p
+                onClick={() => {
+                  setToken(null);
+                  Cookies.remove("token");
+                }}
+              >
+                Déconnection
+              </p>
+            ) : (
+              <Link to="/signup">S'inscrire</Link>
+            )}
           </button>
-          <button>Se connecter</button>
+          <button>
+            <Link to="/login">Se connecter</Link>
+          </button>
         </div>
         <button>Vends tes articles</button>
       </div>

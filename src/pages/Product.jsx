@@ -15,11 +15,12 @@ const Product = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/v2/offers/" + params.id
+          "https://site--vinted-like--d7bkrd25789m.code.run/offers/" + params.id
         );
         setData(response.data);
         // console.log(response.data);
         setIsLoading(false);
+        console.log(response.data);
       } catch (error) {
         console.log(error.response);
       }
@@ -35,7 +36,7 @@ const Product = () => {
   // console.log(params.id);
   const fullInfos = () => {
     // console.log(data);
-    const imageOffer = data.product_pictures[0].secure_url;
+    const imageOffer = data.product_image;
     const price = data.product_price;
     const productDetail = data.product_details;
     let offerDetails = {};

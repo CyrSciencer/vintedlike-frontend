@@ -12,10 +12,11 @@ const Home = () => {
 
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/v2/offers"
+          "https://site--vinted-like--d7bkrd25789m.code.run/offers"
         );
         setData(response.data);
         setIsLoading(false);
+        // console.log(response.data);
       } catch (error) {
         console.log(error.response);
       }
@@ -23,7 +24,7 @@ const Home = () => {
     fetchData();
   }, []);
   //   console.log(data);
-  const offers = data.offers;
+  const offers = data;
   let counter = 0;
 
   return isLoading ? (
@@ -39,6 +40,8 @@ const Home = () => {
       </div>
       <div className="offers">
         {offers.map((offer) => {
+          // console.log(offer);
+
           if (counter < 9 * 5) {
             counter++;
             return (

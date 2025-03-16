@@ -1,19 +1,36 @@
 import axios from "axios";
 import { useState } from "react";
-const SignUp = () => {
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import "../css/connection.css";
+const SignUp = ({ token, setToken }) => {
+  const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState({
     email: "",
     username: "",
     password: "",
     newsletter: false,
   });
-  console.log(data);
+  //   console.log(data);
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-      data
-    );
+    try {
+      console.log(Cookies.get("online"));
+      event.preventDefault();
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        data
+      );
+
+      setToken(response.data.token);
+      Cookies.set("token", token);
+
+      navigate("/");
+    } catch (error) {
+      error.response && setErrorMessage(error.response.status);
+      console.log(errorMessage);
+    }
   };
   const handleUsername = (event) => {
     setData({ ...data, username: event.target.value });
@@ -24,17 +41,13 @@ const SignUp = () => {
   const handlePassword = (event) => {
     setData({ ...data, password: event.target.value });
   };
-  const handleNewsletter = (event) => {
+  const handleNewsletter = () => {
     setData({ ...data, newsletter: !data.newsletter });
   };
-  const username = data.username;
-  const email = data.email;
-  const password = data.password;
-  const newsletter = data.newsletter;
 
   return (
-    <section>
-      <h2></h2>
+    <section className="sign-up">
+      <h2>S'inscrire</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -61,10 +74,11 @@ const SignUp = () => {
         <button>S'inscrire</button>
       </form>
       <div>
-        {/* <Link> */}
-        <p>Tu as déjà un compte ? Connecte-toi !</p>
-        {/* </Link> */}
+        <p>
+          <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
+        </p>
       </div>
+      {errorMessage && <div>{errorMessage}</div>}
     </section>
   );
 };

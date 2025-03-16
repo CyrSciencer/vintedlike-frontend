@@ -1,0 +1,71 @@
+.login form > input,
+.sign-up form > input {
+  background-color: white;
+  border-bottom: 2px solid gray;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  margin-top: 30px;
+  padding: 15px 5px;
+  font-size: 120%;
+}
+.login button,
+.sign-up button {
+  background-color: rgb(44, 177, 186);
+  border-style: none;
+  height: 44px;
+  width: 274px;
+  border-radius: 10px;
+  color: white;
+  font-size: 110%;
+  margin: 20px 0;
+}
+.login,
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sign-up h2,
+.login h2 {
+  font-size: 170%;
+}
+.sign-up form {
+  /* border: 2px solid gray; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 280px;
+}
+.sign-up form > div > div {
+  /* border: 2px solid rgb(161, 32, 32); */
+  display: flex;
+  align-items: center;
+  font-size: 110%;
+  margin-top: 30px;
+  gap: 20px;
+}
+.sign-up form > div > div > input {
+  margin-left: 10px;
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+.sign-up form > div > p {
+  color: gray;
+  font-size: 90%;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.login form {
+  /* border: 2px solid rgb(161, 32, 32); */
+  display: flex;
+  flex-direction: column;
+}
+.login > div > p > a,
+.sign-up > div > p > a {
+  color: rgb(44, 177, 186);
+}
