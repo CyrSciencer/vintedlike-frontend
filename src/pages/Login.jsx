@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "../css/connection.css";
-const Login = ({ token, setToken }) => {
+const Login = ({ token, setToken, setHomePricing }) => {
   // const [token,setToken]
+  setHomePricing(false); //deactivate the price handling ui
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState({
     email: "",
@@ -16,12 +17,11 @@ const Login = ({ token, setToken }) => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
+        "https://site--vinted-like--d7bkrd25789m.code.run/user/login",
         data
       );
       setToken(response.data.token);
-      Cookies.set("token", token);
-
+      Cookies.set("token", response.data.token);
       navigate("/");
     } catch (error) {
       error.response && setErrorMessage(error.response.status);

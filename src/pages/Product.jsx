@@ -4,9 +4,11 @@ import axios from "axios";
 
 import "../css/product.css";
 
-const Product = () => {
+const Product = ({ setHomePricing }) => {
   const params = useParams();
   // console.log(params);
+  setHomePricing(false); //deactivate the price handling ui
+  // console.log(homePricing);
 
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +22,7 @@ const Product = () => {
         setData(response.data);
         // console.log(response.data);
         setIsLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error.response);
       }
@@ -56,7 +58,7 @@ const Product = () => {
   };
   let infosToUse;
   !isLoading && (infosToUse = fullInfos());
-  console.log(infosToUse);
+  // console.log(infosToUse);
 
   return isLoading ? (
     <p>chargement</p>

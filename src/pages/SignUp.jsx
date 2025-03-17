@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "../css/connection.css";
-const SignUp = ({ token, setToken }) => {
+const SignUp = ({ token, setToken, setHomePricing }) => {
+  setHomePricing(false); //deactivate the price handling ui
   const [errorMessage, setErrorMessage] = useState("");
+
   const [data, setData] = useState({
     email: "",
     username: "",
@@ -15,25 +17,28 @@ const SignUp = ({ token, setToken }) => {
   //   console.log(data);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      console.log(Cookies.get("online"));
-      event.preventDefault();
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        `https://site--vinted-like--d7bkrd25789m.code.run/user/signup`,
         data
       );
 
       setToken(response.data.token);
-      Cookies.set("token", token);
-
+      Cookies.set("token", response.data.token);
       navigate("/");
     } catch (error) {
       error.response && setErrorMessage(error.response.status);
-      console.log(errorMessage);
+      console.log("AntiCrash");
     }
   };
   const handleUsername = (event) => {
-    setData({ ...data, username: event.target.value });
+    setData({
+      ...data,
+      account: {
+        username: event.target.value,
+      },
+    });
   };
   const handleEmail = (event) => {
     setData({ ...data, email: event.target.value });
@@ -78,7 +83,6 @@ const SignUp = ({ token, setToken }) => {
           <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
         </p>
       </div>
-      {errorMessage && <div>{errorMessage}</div>}
     </section>
   );
 };

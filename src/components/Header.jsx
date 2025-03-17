@@ -1,7 +1,8 @@
 import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
-import Login from "../pages/Login";
+
 import Cookies from "js-cookie";
+import { useEffect } from "react";
 const Header = ({
   search,
   setSearch,
@@ -9,13 +10,20 @@ const Header = ({
   setPriceHandle,
   token,
   setToken,
+  homePricing,
 }) => {
+  useEffect(() => {
+    console.log(Cookies.get("token"));
+    console.log(Cookies.get(token));
+  }, []);
   const sort = priceHandle.HighPriceFirst;
 
+  // console.log(homePricing);
+  //gérer si le token existe, alors autoconnect
   return (
     <>
       <div>
-        <Link to="/" className="home-link">
+        <Link to={`/`} className="home-link">
           <img src={logo} alt="" />
         </Link>
       </div>
@@ -28,24 +36,28 @@ const Header = ({
           }}
         />
 
-        <div className="sorting">
-          <div>
-            <p>Trier par prix</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                onChange={() => {
-                  setPriceHandle({ ...priceHandle, HighPriceFirst: !sort });
-                }}
-              />
+        {homePricing && (
+          <div className="sorting">
+            <div>
+              <p>Trier par prix</p>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  onClick={() => {
+                    console.log(sort);
 
-              <span className="slider round"></span>
-            </label>
+                    setPriceHandle({ ...priceHandle, HighPriceFirst: !sort });
+                  }}
+                />
+
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              <p>Prix entre</p>
+            </div>
           </div>
-          <div>
-            <p>Prix entre</p>
-          </div>
-        </div>
+        )}
       </div>
       <div>
         <div>
@@ -67,7 +79,9 @@ const Header = ({
             <Link to="/login">Se connecter</Link>
           </button>
         </div>
-        <button>Vends tes articles</button>
+        <button>
+          <Link to={`/publish`}>Vends tes articles</Link>
+        </button>
       </div>
     </>
   );
