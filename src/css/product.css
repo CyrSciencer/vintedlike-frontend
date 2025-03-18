@@ -1,7 +1,8 @@
 .offer-main {
-  display: flex;
-  align-items: flex-start;
   background-color: rgb(227, 231, 235);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
 }
 .offer-main > div:first-child {
   /* border: 2px solid rgb(95, 131, 228); */
@@ -15,7 +16,7 @@
   max-height: 550px;
   min-height: 540px;
 }
-.offer-main > div:last-child {
+.offer-main > :nth-child(2) {
   /* border: 2px solid rgb(228, 95, 95); */
   flex: 1;
   display: flex;
@@ -25,8 +26,8 @@
   background-color: white;
   /* border: 2px solid rgb(95, 228, 122); */
   width: 60%;
-  max-height: 650px;
-  padding: 5px;
+  max-height: 90%;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -41,6 +42,18 @@
   border-bottom: 2px solid rgb(217, 228, 225);
   padding-bottom: 15px;
 }
+.offer-main > div:last-child > div > div:nth-child(2) > div {
+  /* border: 2px solid rgb(228, 201, 95); */
+  display: flex;
+  align-items: center;
+}
+.offer-main > div:last-child > div > div:nth-child(2) img {
+  height: 50px;
+  /* border: 2px solid rgb(95, 228, 122); */
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
 .offer-infos {
   /* border: 2px solid rgb(95, 228, 122); */
   display: flex;
@@ -51,4 +64,15 @@
   display: flex;
   /* border: 2px solid rgb(95, 131, 228); */
   justify-content: space-between;
+}
+.offer-main button {
+  background-color: rgb(44, 177, 186);
+  border-style: none;
+  height: 25px;
+  width: 100%;
+  border-radius: 5px;
+  color: white;
+  font-size: 90%;
+  margin: 20px 0;
+  align-self: center;
 }

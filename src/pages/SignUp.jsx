@@ -4,40 +4,38 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "../css/connection.css";
-const SignUp = ({ token, setToken, setHomePricing }) => {
-  setHomePricing(false); //deactivate the price handling ui
+const SignUp = ({ token, setToken }) => {
   const [errorMessage, setErrorMessage] = useState("");
-
   const [data, setData] = useState({
     email: "",
     username: "",
     password: "",
     newsletter: false,
   });
-  //   console.log(data);
+  console.log(data);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `https://site--vinted-like--d7bkrd25789m.code.run/user/signup`,
+        `http://localhost:3000/user/signup`,
         data
       );
-
+      // AItZQ1TM8vY-zSIc_UcQfk_m705sDzb14YlE_DhAKNJb8UQnxPCbtFSSpk_O2LV7
+      console.log(response.data);
       setToken(response.data.token);
       Cookies.set("token", response.data.token);
       navigate("/");
     } catch (error) {
       error.response && setErrorMessage(error.response.status);
-      console.log("AntiCrash");
+      console.log(error.response);
     }
   };
   const handleUsername = (event) => {
     setData({
       ...data,
-      account: {
-        username: event.target.value,
-      },
+
+      username: event.target.value,
     });
   };
   const handleEmail = (event) => {

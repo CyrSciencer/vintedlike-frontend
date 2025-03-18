@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-
+import placeholder from "../img/placeholder.jpg";
 import "../css/product.css";
-
-const Product = ({ setHomePricing }) => {
+import Cookies from "js-cookie";
+const Product = ({ setInfoPayment }) => {
   const params = useParams();
   // console.log(params);
-  setHomePricing(false); //deactivate the price handling ui
   // console.log(homePricing);
 
   const [data, setData] = useState({});
@@ -17,7 +16,7 @@ const Product = ({ setHomePricing }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://site--vinted-like--d7bkrd25789m.code.run/offers/" + params.id
+          "http://localhost:3000/offers/" + params.id
         );
         setData(response.data);
         // console.log(response.data);
@@ -41,6 +40,12 @@ const Product = ({ setHomePricing }) => {
     const imageOffer = data.product_image;
     const price = data.product_price;
     const productDetail = data.product_details;
+    const productName = data.product_name;
+    const productDescription = data.product_description;
+    let owner = "none";
+    data.owner && (owner = data.owner.account.username);
+    let avatar = placeholder;
+
     let offerDetails = {};
     for (let i = 0; i < productDetail.length; i++) {
       productDetail[i].MARQUE &&
@@ -53,8 +58,17 @@ const Product = ({ setHomePricing }) => {
       productDetail[i].EMPLACEMENT &&
         (offerDetails.emplacement = productDetail[i].EMPLACEMENT);
     }
+    // console.log(placeholder);
 
-    return { imageOffer, price, offerDetails };
+    return {
+      imageOffer,
+      price,
+      offerDetails,
+      productName,
+      productDescription,
+      owner,
+      avatar,
+    };
   };
   let infosToUse;
   !isLoading && (infosToUse = fullInfos());
@@ -106,14 +120,27 @@ const Product = ({ setHomePricing }) => {
             </div>
           </div>
           <div>
-            <p></p>
-            <p></p>
+            <p>{infosToUse.productName}</p>
+            <p>{infosToUse.productDescription}</p>
             <div>
-              <div></div>
-              <p></p>
+              <img src={infosToUse.avatar} alt="" />
+              <p>{infosToUse.owner}</p>
             </div>
           </div>
-          <button>Acheter</button>
+          <button>
+            {Cookies.get("token") ? (
+              <Link
+                to="/payment"
+                onClick={() => {
+                  setInfoPayment({ ...infosToUse });
+                }}
+              >
+                Acheter
+              </Link>
+            ) : (
+              <Link to="/login">Acheter</Link>
+            )}
+          </button>
         </div>
       </div>
     </main>

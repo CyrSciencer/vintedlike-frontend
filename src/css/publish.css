@@ -1,0 +1,109 @@
+.publication {
+  background-color: rgb(242, 242, 242);
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.publication form {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  align-items: center;
+  width: 65%;
+  margin-top: 30px;
+  gap: 10px;
+}
+.publication form > div:first-child > input {
+  display: none;
+}
+.publication form > div:first-child > label {
+  color: rgb(44, 177, 186);
+  border: 2px solid rgb(44, 177, 186);
+  font-weight: bold;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 200px;
+}
+.publication form > div {
+  border: 2px solid rgb(229, 229, 229);
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.publication form > div:first-child {
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+.publication form > button {
+  align-self: self-end;
+  background-color: rgb(44, 177, 186);
+  border-style: none;
+  height: 22px;
+  width: 137px;
+  border-radius: 10px;
+  color: white;
+  font-size: 90%;
+  margin: 20px 0;
+}
+.publication form > div > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px;
+  border-bottom: 2px solid rgb(239, 239, 239);
+}
+.publication form > div > div > label {
+  /* border: 2px solid red; */
+  margin-top: 5px;
+}
+.publication form > div > div:last-child {
+  border-style: none;
+}
+.publication form > div:nth-child(4) > div:last-child {
+  font-size: 80%;
+}
+.publication form > div > div input,
+.publication form > div > div textarea {
+  border-bottom: 2px solid rgb(239, 239, 239);
+  width: 70%;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  margin-bottom: 20px;
+}
+.publication form > div > div textarea {
+  resize: none;
+  height: 150px;
+}
+.payment-succes {
+  /* border: 2px solid rgb(255, 0, 191); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 50px auto;
+  gap: 20px;
+}
+.payment-succes p {
+  padding: 10px;
+  border-bottom: 2px solid rgb(231, 231, 231);
+  width: 50%;
+  text-align: center;
+}
+.payment-succes div {
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+.payment-succes img {
+  /* border: 2px solid rgb(26, 255, 0); */
+  max-height: 250px;
+}

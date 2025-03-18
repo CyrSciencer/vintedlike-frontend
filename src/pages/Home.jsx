@@ -3,8 +3,9 @@ import Offers from "../components/Offers";
 import placeholder from "../img/placeholder.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const Home = ({ setHomePricing, search, priceHandle }) => {
-  setHomePricing(true); //activate the price handling ui
+//https:$//site--vinted-like--d7bkrd25789m.code.run/
+//http:$//localhost:3000/
+const Home = ({ search, priceHandle }) => {
   // console.log(homePricing);
   let sorting;
   // console.log(priceHandle.sort);
@@ -15,9 +16,9 @@ const Home = ({ setHomePricing, search, priceHandle }) => {
       // console.log("here");
 
       try {
-        !priceHandle.sort ? (sorting = "asc") : (sorting = "desc");
+        priceHandle.sort ? (sorting = "asc") : (sorting = "desc");
         const response = await axios.get(
-          `https://site--vinted-like--d7bkrd25789m.code.run/offers?title=${search}&sort=${sorting}`
+          `http://localhost:3000/offers?title=${search}&sort=${sorting}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -30,6 +31,7 @@ const Home = ({ setHomePricing, search, priceHandle }) => {
   }, [search, priceHandle]);
   //   console.log(data);
   const offers = data;
+  // console.log(priceHandle);
 
   return isLoading ? (
     <p>chargement</p>

@@ -8,7 +8,9 @@ import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 const App = () => {
+  const [infoPayment, setInfoPayment] = useState({});
   const [search, setSearch] = useState("");
   const [priceHandle, setPriceHandle] = useState({
     sort: true,
@@ -16,7 +18,7 @@ const App = () => {
     priceMax: 100,
   });
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [homePricing, setHomePricing] = useState(true);
+  // console.log({ infoPayment });
 
   return (
     <>
@@ -29,7 +31,6 @@ const App = () => {
             setPriceHandle={setPriceHandle}
             token={token}
             setToken={setToken}
-            homePricing={homePricing}
           />
         </header>
         <Routes>
@@ -38,7 +39,6 @@ const App = () => {
             element={
               <Home
                 setPriceHandle={setPriceHandle}
-                setHomePricing={setHomePricing}
                 search={search}
                 priceHandle={priceHandle}
               />
@@ -46,31 +46,20 @@ const App = () => {
           />
           <Route
             path="/product/:id"
-            element={<Product setHomePricing={setHomePricing} />}
+            element={<Product setInfoPayment={setInfoPayment} />}
           />
           <Route
             path="/signup"
-            element={
-              <SignUp
-                token={token}
-                setToken={setToken}
-                setHomePricing={setHomePricing}
-              />
-            }
+            element={<SignUp token={token} setToken={setToken} />}
           />
           <Route
             path="/login"
-            element={
-              <Login
-                token={token}
-                setToken={setToken}
-                setHomePricing={setHomePricing}
-              />
-            }
+            element={<Login token={token} setToken={setToken} />}
           />
+          <Route path="/publish" element={<Publish />} />
           <Route
-            path="/publish"
-            element={<Publish setHomePricing={setHomePricing} />}
+            path="/payment"
+            element={<Payment infoPayment={infoPayment} />}
           />
         </Routes>
       </Router>

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "../css/connection.css";
-const Login = ({ token, setToken, setHomePricing }) => {
+const Login = ({ token, setToken }) => {
   // const [token,setToken]
-  setHomePricing(false); //deactivate the price handling ui
+
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState({
     email: "",
@@ -17,7 +17,7 @@ const Login = ({ token, setToken, setHomePricing }) => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        "https://site--vinted-like--d7bkrd25789m.code.run/user/login",
+        "http://localhost:3000/user/login",
         data
       );
       setToken(response.data.token);

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-const Publish = ({ setHomePricing }) => {
-  setHomePricing(false); //deactivate the price handling ui
+import "../css/publish.css";
+const Publish = () => {
   const token = Cookies.get("token");
 
   //éléments à envoyer en back
@@ -19,7 +19,6 @@ const Publish = ({ setHomePricing }) => {
   const [price, setPrice] = useState("");
   //identification
   const handleSubmit = async (event) => {
-    const navigate = useNavigate();
     event.preventDefault();
     //object body pour POST
     const formData = new FormData();
@@ -35,7 +34,7 @@ const Publish = ({ setHomePricing }) => {
 
     try {
       const response = await axios.post(
-        "https://site--vinted-like--d7bkrd25789m.code.run/offer/publish",
+        "http://localhost:3000/offer/publish",
         formData,
         {
           headers: {
@@ -44,8 +43,6 @@ const Publish = ({ setHomePricing }) => {
         }
       );
       console.log(response.data);
-
-      navigate("/");
     } catch (error) {
       console.log(error.response);
     }
@@ -54,95 +51,117 @@ const Publish = ({ setHomePricing }) => {
     setState(event.target.value);
   };
   return token ? (
-    <section>
+    <section className="publication">
       <form onSubmit={handleSubmit}>
         <div>
+          <label htmlFor="filing">+ Ajouter une photo</label>
           <input
             type="file"
             // multiple={true} => pour pouvoir sélectionner plusieurs fichiers
             onChange={async (event) => {
               setFile(event.target.files[0]);
             }}
+            id="filing"
           />
         </div>
         <div>
-          <label htmlFor="titre">Titre</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setTitle);
-            }}
-            value={title}
-            id="titre"
-          />
-        </div>
-        <label htmlFor="desc">Décrit ton article</label>
-        <textarea
-          onChange={(event) => {
-            handleChange(event, setDescription);
-          }}
-          value={description}
-          id="desc"
-        ></textarea>
-        <div>
-          <label htmlFor="brand">Marque</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setBrand);
-            }}
-            value={brand}
-            id="brand"
-          />
-          <label htmlFor="size">Taille</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setSize);
-            }}
-            value={size}
-            id="size"
-          />
-          <label htmlFor="color">Couleur</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setColor);
-            }}
-            value={color}
-            id="color"
-          />
-          <label htmlFor="quality">Etat</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setQuality);
-            }}
-            value={quality}
-            id="quality"
-          />
-          <label htmlFor="city">Lieu</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setCity);
-            }}
-            value={city}
-            id="city"
-          />
+          <div>
+            <label htmlFor="titre">Titre</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setTitle);
+              }}
+              value={title}
+              id="titre"
+            />
+          </div>
+          <div>
+            <label htmlFor="desc">Décrit ton article</label>
+            <textarea
+              onChange={(event) => {
+                handleChange(event, setDescription);
+              }}
+              value={description}
+              id="desc"
+            ></textarea>
+          </div>
         </div>
         <div>
-          <label htmlFor="price">Prix</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, setPrice);
-            }}
-            value={price}
-            id="price"
-          />
+          <div>
+            <label htmlFor="brand">Marque</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setBrand);
+              }}
+              value={brand}
+              id="brand"
+            />
+          </div>
+          <div>
+            <label htmlFor="size">Taille</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setSize);
+              }}
+              value={size}
+              id="size"
+            />
+          </div>
+          <div>
+            <label htmlFor="color">Couleur</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setColor);
+              }}
+              value={color}
+              id="color"
+            />
+          </div>
+          <div>
+            <label htmlFor="quality">Etat</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setQuality);
+              }}
+              value={quality}
+              id="quality"
+            />
+          </div>
+          <div>
+            <label htmlFor="city">Lieu</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setCity);
+              }}
+              value={city}
+              id="city"
+            />
+          </div>
         </div>
-        <button></button>
+        <div>
+          <div>
+            <label htmlFor="price">Prix</label>
+            <input
+              type="text"
+              onChange={(event) => {
+                handleChange(event, setPrice);
+              }}
+              value={price}
+              id="price"
+            />
+          </div>
+          <div>
+            <input type="checkbox" />
+            <p>Je suis intéressé(e) par les échanges</p>
+          </div>
+        </div>
+        <button>Ajouter</button>
       </form>
     </section>
   ) : (

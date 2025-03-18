@@ -1,5 +1,5 @@
 import logo from "../img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Cookies from "js-cookie";
 import { useEffect } from "react";
@@ -10,13 +10,14 @@ const Header = ({
   setPriceHandle,
   token,
   setToken,
-  homePricing,
 }) => {
-  useEffect(() => {
-    console.log(Cookies.get("token"));
-    console.log(Cookies.get(token));
-  }, []);
-  const sort = priceHandle.HighPriceFirst;
+  const location = useLocation();
+  // console.log(location);
+
+  console.log(Cookies.get("token"));
+  // console.log(token);
+
+  const sort = priceHandle.sort;
 
   // console.log(homePricing);
   //gérer si le token existe, alors autoconnect
@@ -36,7 +37,7 @@ const Header = ({
           }}
         />
 
-        {homePricing && (
+        {location.pathname === "/" && (
           <div className="sorting">
             <div>
               <p>Trier par prix</p>
@@ -46,7 +47,7 @@ const Header = ({
                   onClick={() => {
                     console.log(sort);
 
-                    setPriceHandle({ ...priceHandle, HighPriceFirst: !sort });
+                    setPriceHandle({ ...priceHandle, sort: !sort });
                   }}
                 />
 
@@ -75,9 +76,11 @@ const Header = ({
               <Link to="/signup">S'inscrire</Link>
             )}
           </button>
-          <button>
-            <Link to="/login">Se connecter</Link>
-          </button>
+          {token === null && (
+            <button>
+              <Link to="/login">Se connecter</Link>
+            </button>
+          )}
         </div>
         <button>
           <Link to={`/publish`}>Vends tes articles</Link>
