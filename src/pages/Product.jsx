@@ -16,7 +16,7 @@ const Product = ({ setInfoPayment }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/offers/" + params.id
+          "https://site--vinted-like--d7bkrd25789m.code.run/offers/" + params.id
         );
         setData(response.data);
         // console.log(response.data);

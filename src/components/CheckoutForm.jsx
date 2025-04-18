@@ -48,7 +48,7 @@ const CheckoutForm = ({ infoPayment }) => {
     };
     // Demande au backend de créer l'intention de paiement, il nous renvoie le clientSecret
     const response = await axios.post(
-      "http://localhost:3000/payment",
+      "https://site--vinted-like--d7bkrd25789m.code.run/payment",
       bodyToBack
     );
     console.log({ response });

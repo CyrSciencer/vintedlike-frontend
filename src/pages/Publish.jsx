@@ -34,7 +34,7 @@ const Publish = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/offer/publish",
+        "https://site--vinted-like--d7bkrd25789m.code.run/offer/publish",
         formData,
         {
           headers: {

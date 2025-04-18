@@ -2,7 +2,7 @@ import logo from "../img/logo.png";
 import { Link, useLocation } from "react-router-dom";
 
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+
 const Header = ({
   search,
   setSearch,

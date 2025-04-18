@@ -18,7 +18,7 @@ const SignUp = ({ token, setToken }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:3000/user/signup`,
+        `https://site--vinted-like--d7bkrd25789m.code.run/user/signup`,
         data
       );
       // AItZQ1TM8vY-zSIc_UcQfk_m705sDzb14YlE_DhAKNJb8UQnxPCbtFSSpk_O2LV7

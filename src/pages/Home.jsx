@@ -18,7 +18,7 @@ const Home = ({ search, priceHandle }) => {
       try {
         priceHandle.sort ? (sorting = "asc") : (sorting = "desc");
         const response = await axios.get(
-          `http://localhost:3000/offers?title=${search}&sort=${sorting}`
+          `https://site--vinted-like--d7bkrd25789m.code.run/offers?title=${search}&sort=${sorting}`
         );
         setData(response.data);
         setIsLoading(false);
